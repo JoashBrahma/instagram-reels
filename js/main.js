@@ -15,7 +15,7 @@ function triggerFloatingLikeAnimation() {
   reelsContainer.append(likeIcon);
 }
 
-function videoObsever() {
+function videoObserver() {
   return new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       const video = entry.target;
@@ -92,7 +92,7 @@ reelsContainer.innerHTML =
       </div>`;
   }, "");
 
-const observer = videoObsever();
+const observer = videoObserver();
 document
   .querySelectorAll(".reel video")
   .forEach(video => observer.observe(video));
