@@ -1,0 +1,202 @@
+$text-size-xs: 12px;
+$text-size-sm: 14px;
+$text-size-md: 16px;
+$text-size-lg: 20px;
+$text-size-xl: 24px;
+$text-size-2xl: 32px;
+
+$space-xs: 4px;
+$space-sm: 8px;
+$space-md: 16px;
+$space-lg: 24px;
+$space-xl: 32px;
+
+$border-radius-xs: 4px;
+$border-radius-sm: 8px;
+$border-radius-md: 12px;
+$border-radius-lg: 16px;
+$border-radius-xl: 24px;
+
+$reel-bg-color: #121212;
+$reel-text-color: whitesmoke;
+$reel-container-max-width: 320px;
+$reel-container-max-height: $reel-container-max-width * (16 / 9);
+$reel-profile-pic-width: 40px;
+$reel-profile-pic-height: $reel-profile-pic-width;
+$reel-username-max-width: $reel-container-max-width / 3;
+$reel-btn-follow-border: 1px solid $reel-text-color;
+$reel-caption-max-width: $reel-container-max-width * 0.75;
+$reel-btn-liked-color: #ed4956;
+
+@mixin flex-center() {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin text-over-ellipsis() {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont,
+    'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
+    'Open Sans', 'Helvetica Neue', sans-serif;
+  scroll-behavior: smooth;
+}
+
+html,
+body,
+main {
+  height: 100%;
+}
+
+main {
+  @include flex-center();
+  padding: $space-sm;
+}
+
+.reels-container {
+  max-width: $reel-container-max-width;
+  max-height: $reel-container-max-height;
+  width: 100%;
+  height: 100%;
+  color: $reel-text-color;
+  background-color: $reel-bg-color;
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  .reel {
+    height: 100%;
+    position: relative;
+    scroll-snap-align: center;
+
+    .reel__content {
+      height: 100%;
+      @include flex-center();
+
+      img,
+      video {
+        width: 100%;
+      }
+    }
+
+    .reel__bottom {
+      width: 100%;
+      position: absolute;
+      bottom: 0;
+      padding: $space-md - $space-xs;
+
+      .reel__profile {
+        display: flex;
+        align-items: center;
+        gap: $space-sm;
+        margin-bottom: $space-sm;
+
+        .reel__profile-pic {
+          width: $reel-profile-pic-width;
+          height: $reel-profile-pic-height;
+          border-radius: 50%;
+          overflow: hidden;
+
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+          }
+        }
+
+        .reel__username {
+          max-width: $reel-username-max-width;
+          font-size: $text-size-sm;
+          @include text-over-ellipsis();
+        }
+
+        .reel__btn-follow {
+          font-size: $text-size-xs;
+          line-height: 0;
+          padding: 1em;
+          border: $reel-btn-follow-border;
+          border-radius: $border-radius-xs;
+          background-color: transparent;
+          color: $reel-text-color;
+        }
+      }
+
+      .reel__caption {
+        max-width: $reel-caption-max-width;
+        font-size: $text-size-xs;
+        @include text-over-ellipsis();
+      }
+    }
+
+    .reel__right {
+      height: 100%;
+      position: absolute;
+      top: 0;
+      right: 0;
+      padding: $space-md - $space-xs;
+      display: flex;
+      flex-direction: column;
+      justify-content: end;
+      gap: $space-md;
+
+      .reel__action {
+        line-height: 1;
+        color: $reel-text-color;
+
+        .reel__btn {
+          font-size: $text-size-xl;
+          background-color: transparent;
+          border: none;
+          color: inherit;
+        }
+
+        .reel__btn-like.liked {
+          color: $reel-btn-liked-color;
+        }
+
+        .reel__total-likes,
+        .reel__total-comments,
+        .reel__total-shares {
+          font-size: $text-size-sm;
+          text-align: center;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+  .reel-container {
+    .reel__bottom {
+      .reel__profile {
+        .reel__btn-follow {
+          cursor: pointer;
+        }
+      }
+    }
+
+    .reel__right {
+      .reel__action {
+        .reel__btn {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

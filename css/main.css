@@ -1,0 +1,139 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  scroll-behavior: smooth;
+}
+
+html,
+body,
+main {
+  height: 100%;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+}
+
+.reels-container {
+  max-width: 320px;
+  max-height: 568.8888888889px;
+  width: 100%;
+  height: 100%;
+  color: whitesmoke;
+  background-color: #121212;
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+}
+.reels-container::-webkit-scrollbar {
+  display: none;
+}
+.reels-container .reel {
+  height: 100%;
+  position: relative;
+  scroll-snap-align: center;
+}
+.reels-container .reel .reel__content {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.reels-container .reel .reel__content img,
+.reels-container .reel .reel__content video {
+  width: 100%;
+}
+.reels-container .reel .reel__bottom {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  padding: 12px;
+}
+.reels-container .reel .reel__bottom .reel__profile {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.reels-container .reel .reel__bottom .reel__profile .reel__profile-pic {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.reels-container .reel .reel__bottom .reel__profile .reel__profile-pic img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.reels-container .reel .reel__bottom .reel__profile .reel__username {
+  max-width: 106.6666666667px;
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.reels-container .reel .reel__bottom .reel__profile .reel__btn-follow {
+  font-size: 12px;
+  line-height: 0;
+  padding: 1em;
+  border: 1px solid whitesmoke;
+  border-radius: 4px;
+  background-color: transparent;
+  color: whitesmoke;
+}
+.reels-container .reel .reel__bottom .reel__caption {
+  max-width: 240px;
+  font-size: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.reels-container .reel .reel__right {
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  gap: 16px;
+}
+.reels-container .reel .reel__right .reel__action {
+  line-height: 1;
+  color: whitesmoke;
+}
+.reels-container .reel .reel__right .reel__action .reel__btn {
+  font-size: 24px;
+  background-color: transparent;
+  border: none;
+  color: inherit;
+}
+.reels-container .reel .reel__right .reel__action .reel__btn-like.liked {
+  color: #ed4956;
+}
+.reels-container .reel .reel__right .reel__action .reel__total-likes,
+.reels-container .reel .reel__right .reel__action .reel__total-comments,
+.reels-container .reel .reel__right .reel__action .reel__total-shares {
+  font-size: 14px;
+  text-align: center;
+}
+
+@media (min-width: 1024px) {
+  .reel-container .reel__bottom .reel__profile .reel__btn-follow {
+    cursor: pointer;
+  }
+  .reel-container .reel__right .reel__action .reel__btn {
+    cursor: pointer;
+  }
+}/*# sourceMappingURL=main.css.map */
