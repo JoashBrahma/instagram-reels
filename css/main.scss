@@ -76,6 +76,7 @@ main {
   scroll-snap-type: y mandatory;
   scroll-behavior: smooth;
   position: relative;
+  border-radius: $border-radius-md;
 
   &::-webkit-scrollbar {
     display: none;

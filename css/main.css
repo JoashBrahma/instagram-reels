@@ -33,6 +33,7 @@ main {
   scroll-snap-type: y mandatory;
   scroll-behavior: smooth;
   position: relative;
+  border-radius: 12px;
 }
 .reels-container::-webkit-scrollbar {
   display: none;
