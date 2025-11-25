@@ -15,11 +15,10 @@ function triggerFloatingLikeAnimation() {
   reelsContainer.append(likeIcon);
 }
 
-
 reelsContainer.innerHTML =
   reels.reduce((acc, reel, idx) => {
     return acc += `
-      <div class="reel">
+      <div class="reel" data-reel-id="${idx}">
         <div class="reel__content">
           <video src="${reel.video}" autoplay muted loop></video>
         </div>
@@ -96,4 +95,27 @@ reelsContainer.addEventListener("click", (e) => {
       triggerFloatingLikeAnimation();
     }
   }
-})
+});
+
+reelsContainer.addEventListener("dblclick", (e) => {
+  const reel = e.target.closest(".reel");
+
+  if (!reel) return;
+
+  triggerFloatingLikeAnimation();
+
+  const reelId = parseInt(reel.dataset.reelId);
+
+  if (!reels[reelId].isLiked) {
+    const reelButton = reel.querySelector(".reel__btn-like");
+
+    reels[reelId].isLiked = !reels[reelId].isLiked;
+
+    reels[reelId].likes += reels[reelId].isLiked ? 1 : -1;
+
+    reelButton.innerHTML =
+      `<i class='ri-heart-${reels[reelId].isLiked ? "fill" : "line"}'></i>`;
+    reelButton.classList.toggle("liked");
+    reelButton.nextElementSibling.textContent = reels[reelId].likes;
+  }
+});
