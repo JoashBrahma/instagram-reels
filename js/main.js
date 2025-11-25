@@ -2,6 +2,20 @@ import reels from "./reels.js";
 
 const reelsContainer = document.querySelector(".reels-container");
 
+function triggerFloatingLikeAnimation() {
+  let likeIcon = reelsContainer.querySelector(".floating-like-icon");
+
+  if (likeIcon) {
+    likeIcon.remove();
+  }
+
+  likeIcon = document.createElement("i");
+  likeIcon.classList.add("ri-heart-fill", "floating-like-icon")
+
+  reelsContainer.append(likeIcon);
+}
+
+
 reelsContainer.innerHTML =
   reels.reduce((acc, reel, idx) => {
     return acc += `
@@ -77,5 +91,9 @@ reelsContainer.addEventListener("click", (e) => {
       `<i class='ri-heart-${reels[reelId].isLiked ? "fill" : "line"}'></i>`;
     reelButton.classList.toggle("liked");
     reelButton.nextElementSibling.textContent = reels[reelId].likes;
+
+    if (reels[reelId].isLiked) {
+      triggerFloatingLikeAnimation();
+    }
   }
 })
