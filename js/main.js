@@ -108,8 +108,20 @@ reelsContainer.addEventListener("click", (e) => {
 
     video.muted = !video.muted;
 
-    reelButton.innerHTML =
-      `<i class='ri-volume-${video.muted ? "mute" : "up"}-line'></i>`;
+    document
+      .querySelectorAll(".reel video")
+      .forEach((otherVideo, idx) => {
+        if (idx !== reelId) {
+          otherVideo.muted = video.muted;
+        }
+      });
+
+    document
+      .querySelectorAll(".reel__btn-volume")
+      .forEach((volumeButton) => {
+        volumeButton.innerHTML =
+          `<i class='ri-volume-${video.muted ? "mute" : "up"}-line'></i>`;
+      });
   } else if (reelButton.classList.contains("reel__btn-follow")) {
     reels[reelId].isFollowed = !reels[reelId].isFollowed;
     reelButton.textContent = reels[reelId].isFollowed ? "following" : "follow";
