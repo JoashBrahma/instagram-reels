@@ -157,6 +157,9 @@ main {
   font-size: 14px;
   text-align: center;
 }
+.reels-container .reel .reel__right .reel__action:first-child {
+  margin-bottom: auto;
+}
 
 @media (min-width: 1024px) {
   .reels-container .reel__bottom .reel__profile .reel__btn-follow {

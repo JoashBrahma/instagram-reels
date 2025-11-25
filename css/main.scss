@@ -211,6 +211,10 @@ main {
           text-align: center;
         }
       }
+
+      .reel__action:first-child {
+        margin-bottom: auto;
+      }
     }
   }
 }
