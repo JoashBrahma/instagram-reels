@@ -21,12 +21,13 @@ $reel-bg-color: #121212;
 $reel-text-color: whitesmoke;
 $reel-container-max-width: 320px;
 $reel-container-max-height: $reel-container-max-width * (16 / 9);
+$reel-container-floating-like-color: #ed4956;
 $reel-profile-pic-width: 40px;
 $reel-profile-pic-height: $reel-profile-pic-width;
 $reel-username-max-width: $reel-container-max-width / 3;
 $reel-btn-follow-border: 1px solid $reel-text-color;
 $reel-caption-max-width: $reel-container-max-width * 0.75;
-$reel-btn-liked-color: #ed4956;
+$reel-btn-liked-color: $reel-container-floating-like-color;
 
 @mixin flex-center() {
   display: flex;
@@ -74,9 +75,41 @@ main {
   overflow-y: auto;
   scroll-snap-type: y mandatory;
   scroll-behavior: smooth;
+  position: relative;
 
   &::-webkit-scrollbar {
     display: none;
+  }
+
+  .floating-like-icon {
+    position: fixed;
+    top: 60%;
+    left: 50%;
+    translate: -50% -50%;
+    scale: 0;
+    rotate: -20deg;
+    z-index: 99;
+    font-size: $text-size-2xl * 1.75;
+    color: $reel-container-floating-like-color;
+    opacity: 0;
+    animation: floating-like 1.75s ease-in-out;
+  }
+
+  @keyframes floating-like {
+    25% {
+      scale: 1.2;
+      rotate: 20deg;
+      opacity: 1;
+    }
+
+    50% {
+      scale: 1;
+    }
+
+    100% {
+      top: 20%;
+      opacity: 0;
+    }
   }
 
   .reel {

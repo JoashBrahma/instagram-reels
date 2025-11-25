@@ -32,9 +32,37 @@ main {
   overflow-y: auto;
   scroll-snap-type: y mandatory;
   scroll-behavior: smooth;
+  position: relative;
 }
 .reels-container::-webkit-scrollbar {
   display: none;
+}
+.reels-container .floating-like-icon {
+  position: fixed;
+  top: 60%;
+  left: 50%;
+  translate: -50% -50%;
+  scale: 0;
+  rotate: -20deg;
+  z-index: 99;
+  font-size: 56px;
+  color: #ed4956;
+  opacity: 0;
+  animation: floating-like 1.75s ease-in-out;
+}
+@keyframes floating-like {
+  25% {
+    scale: 1.2;
+    rotate: 20deg;
+    opacity: 1;
+  }
+  50% {
+    scale: 1;
+  }
+  100% {
+    top: 20%;
+    opacity: 0;
+  }
 }
 .reels-container .reel {
   height: 100%;
