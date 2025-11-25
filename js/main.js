@@ -15,6 +15,21 @@ function triggerFloatingLikeAnimation() {
   reelsContainer.append(likeIcon);
 }
 
+function videoObsever() {
+  return new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const video = entry.target;
+
+      if (entry.isIntersecting) {
+        video.play();
+      } else {
+        video.pause();
+        video.currentTime = 0;
+      }
+    });
+  }, { threshold: 0.5 });
+}
+
 reelsContainer.innerHTML =
   reels.reduce((acc, reel, idx) => {
     return acc += `
@@ -76,6 +91,11 @@ reelsContainer.innerHTML =
         </div>
       </div>`;
   }, "");
+
+const observer = videoObsever();
+document
+  .querySelectorAll(".reel video")
+  .forEach(video => observer.observe(video));
 
 reelsContainer.addEventListener("click", (e) => {
   const reelButton = e.target.closest(".reel__btn");
