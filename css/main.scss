@@ -128,6 +128,7 @@ main {
 
         .reel__btn-follow {
           font-size: $text-size-xs;
+          text-transform: capitalize;
           line-height: 0;
           padding: 1em;
           border: $reel-btn-follow-border;

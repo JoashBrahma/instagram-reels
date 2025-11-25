@@ -84,6 +84,7 @@ main {
 }
 .reels-container .reel .reel__bottom .reel__profile .reel__btn-follow {
   font-size: 12px;
+  text-transform: capitalize;
   line-height: 0;
   padding: 1em;
   border: 1px solid whitesmoke;
