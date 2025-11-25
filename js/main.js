@@ -23,8 +23,8 @@ reelsContainer.innerHTML =
         </div>
         <div class="reel__right">
           <div class="reel__action">
-            <button type="button" class="reel__btn reel__btn-like ${reel.isLiked ? 'liked' : "" }" data-reel-id="${idx}">
-              <i class="ri-heart-${reel.isLiked ? 'fill' : "line" }"></i>
+            <button type="button" class="reel__btn reel__btn-like ${reel.isLiked ? 'liked' : ""}" data-reel-id="${idx}">
+              <i class="ri-heart-${reel.isLiked ? 'fill' : "line"}"></i>
             </button>
             <p class="reel__total-likes">${reel.likes}</p>
           </div>
@@ -58,3 +58,24 @@ reelsContainer.innerHTML =
         </div>
       </div>`;
   }, "");
+
+reelsContainer.addEventListener("click", (e) => {
+  const reelButton = e.target.closest(".reel__btn");
+  if (!reelButton) return;
+
+  const reelId = parseInt(reelButton.dataset.reelId);
+
+  if (reelButton.classList.contains("reel__btn-follow")) {
+    reels[reelId].isFollowed = !reels[reelId].isFollowed;
+    reelButton.textContent = reels[reelId].isFollowed ? "following" : "follow";
+  } else if (reelButton.classList.contains("reel__btn-like")) {
+    reels[reelId].isLiked = !reels[reelId].isLiked;
+
+    reels[reelId].likes += reels[reelId].isLiked ? 1 : -1;
+
+    reelButton.innerHTML =
+      `<i class='ri-heart-${reels[reelId].isLiked ? "fill" : "line"}'></i>`;
+    reelButton.classList.toggle("liked");
+    reelButton.nextElementSibling.textContent = reels[reelId].likes;
+  }
+})
