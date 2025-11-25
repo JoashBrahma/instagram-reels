@@ -20,7 +20,7 @@ reelsContainer.innerHTML =
     return acc += `
       <div class="reel" data-reel-id="${idx}">
         <div class="reel__content">
-          <video src="${reel.video}" autoplay muted loop></video>
+          <video src="${reel.video}" loop muted></video>
         </div>
         <div class="reel__bottom">
           <div class="reel__profile">
@@ -35,6 +35,11 @@ reelsContainer.innerHTML =
           <p class="reel__caption">${reel.caption}</p>
         </div>
         <div class="reel__right">
+          <div class="reel__action">
+            <button type="button" class="reel__btn reel__btn-volume" data-reel-id="${idx}">
+              <i class="ri-volume-mute-line"></i>
+            </button>
+          </div>
           <div class="reel__action">
             <button type="button" class="reel__btn reel__btn-like ${reel.isLiked ? 'liked' : ""}" data-reel-id="${idx}">
               <i class="ri-heart-${reel.isLiked ? 'fill' : "line"}"></i>
@@ -78,7 +83,14 @@ reelsContainer.addEventListener("click", (e) => {
 
   const reelId = parseInt(reelButton.dataset.reelId);
 
-  if (reelButton.classList.contains("reel__btn-follow")) {
+  if (reelButton.classList.contains("reel__btn-volume")) {
+    const video = document.querySelector(`.reel[data-reel-id="${reelId}"] video`);
+
+    video.muted = !video.muted;
+
+    reelButton.innerHTML =
+      `<i class='ri-volume-${video.muted ? "mute" : "up"}-line'></i>`;
+  } else if (reelButton.classList.contains("reel__btn-follow")) {
     reels[reelId].isFollowed = !reels[reelId].isFollowed;
     reelButton.textContent = reels[reelId].isFollowed ? "following" : "follow";
   } else if (reelButton.classList.contains("reel__btn-like")) {
