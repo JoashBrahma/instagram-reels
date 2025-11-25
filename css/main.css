@@ -130,10 +130,10 @@ main {
 }
 
 @media (min-width: 1024px) {
-  .reel-container .reel__bottom .reel__profile .reel__btn-follow {
+  .reels-container .reel__bottom .reel__profile .reel__btn-follow {
     cursor: pointer;
   }
-  .reel-container .reel__right .reel__action .reel__btn {
+  .reels-container .reel__right .reel__action .reel__btn {
     cursor: pointer;
   }
 }/*# sourceMappingURL=main.css.map */
